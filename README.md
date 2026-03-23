@@ -24,15 +24,18 @@ The present tool has the advanatage of allowing users to perform variable level 
 
 1) Complete your Odesi dataset like you normally would (but don't submit it for revision yet);
 2) Export the metadata from a different dataset of the same serie in JSON format (navigate to the "Metadata" tab in Borealis, open the "Export Metadata" scroll down menu, and select "JSON")
-<img width="1140" height="370" alt="image" src="https://github.com/user-attachments/assets/2d5cf726-4f93-4252-aef7-c80e818c0747" />
+
+<kbd><img width="1140" height="370" alt="image" src="https://github.com/user-attachments/assets/2d5cf726-4f93-4252-aef7-c80e818c0747" /></kbd>
 <br><br>
 
-3) Fetch your API key (navigate to your user scroll down menu and select the "API Token" option - from there, you will be able to generate an API token). Remember to never share your API key with anyone.
-<img width="1181" height="217" alt="image" src="https://github.com/user-attachments/assets/f03f1f1d-1889-4d03-8670-bf516a1a2fb4" />
+4) Fetch your API key (navigate to your user scroll down menu and select the "API Token" option - from there, you will be able to generate an API token). Remember to never share your API key with anyone.
+
+<kbd><img width="1181" height="217" alt="image" src="https://github.com/user-attachments/assets/f03f1f1d-1889-4d03-8670-bf516a1a2fb4" /></kbd>
 <br><br>
 
-4) Download th python file from this GitHub repository (navigate to the [API_PUSH_MARKIT_UI.py](https://github.com/letendrt/Dataverse-API-Push-UI-MarkIt-Students/blob/main/API_PUSH_MARKIT_UI.py) file and select the "Download Raw File" option)
-<img width="823" height="89" alt="image" src="https://github.com/user-attachments/assets/31e9f460-3b9c-4f4e-907b-b0a8088c2f46" />
+6) Download th python file from this GitHub repository (navigate to the [API_PUSH_MARKIT_UI.py](https://github.com/letendrt/Dataverse-API-Push-UI-MarkIt-Students/blob/main/API_PUSH_MARKIT_UI.py) file and select the "Download Raw File" option)
+
+<kbd><img width="823" height="89" alt="image" src="https://github.com/user-attachments/assets/31e9f460-3b9c-4f4e-907b-b0a8088c2f46" /></kbd>
 <br><br>
 
 5) Open your python IDE (Jupyter notebook, Wing, PyCharm, etc. - the IDE does not matter as long as it is a local iteration on your device)
