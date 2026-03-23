@@ -73,7 +73,7 @@ text_val_7 = 'Currently: No chosen file!'
 text_val_8 = "4) Browse for the SPSS file (local .sav file uploaded as a tabular in Borealis)"
 text_val_10 = "5) Enter weight variable name;"
 
-text_val_11 = "6) Enter ID variable label;"
+text_val_11 = "6) Enter ID variable name;"
 
 
 #---------------------------LABEL PARAMETERS
