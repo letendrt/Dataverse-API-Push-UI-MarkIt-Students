@@ -44,9 +44,13 @@ The present tool has the advanatage of allowing users to perform variable level 
 <kbd><img width="1266" height="775" alt="image" src="https://github.com/user-attachments/assets/129795bc-6f3d-4e6d-b440-d7bdae6229db" /></kbd>
 <br><br>
 
-7) For fields 1 and 2, make sure there are no spaces before or after your entries.
-8) For fields 3 and 4, simply press their respective button, and navigate to the local file on your device. For field 3, select the JSON file donwloaded in step 2 above. For step 4, simply select the original SPSS file that was converted to TAB during the ingestion process.
-9) 
+7) For fields 1 and 2, make sure there are no spaces before or after your entries. For field 1, copy your API key and paste it in the box. For field 2, copy the DOI link found on your dataset landing page;
+
+<kbd><img width="861" height="234" alt="image" src="https://github.com/user-attachments/assets/b28c48aa-8837-418f-b513-eb66e248f4be" /></kbd>
+<br><br>
+
+8) For fields 3 and 4, simply press their respective button and navigate to the local file on your device. For field 3, select the JSON file donwloaded in step 2. For step 4, simply select the original SPSS file (.sav extension) that was converted to TAB during the ingestion process.
+9) For fields 5 and 6, 
 
 
 
