@@ -31,7 +31,13 @@ The present tool has the advanatage of allowing users to perform variable level 
 <img width="1181" height="217" alt="image" src="https://github.com/user-attachments/assets/f03f1f1d-1889-4d03-8670-bf516a1a2fb4" />
 <br><br>
 
-4) 
+4) Download th python file from this GitHub repository (navigate to the [API_PUSH_MARKIT_UI.py](https://github.com/letendrt/Dataverse-API-Push-UI-MarkIt-Students/blob/main/API_PUSH_MARKIT_UI.py) file and select the "Download Raw File" option)
+<img width="823" height="89" alt="image" src="https://github.com/user-attachments/assets/31e9f460-3b9c-4f4e-907b-b0a8088c2f46" />
+<br><br>
+
+5) Open your python IDE (Jupyter notebook, Wing, PyCharm, etc. - the IDE does not matter as long as it is a local iteration on your device)
+6) 
+
 
 
 
