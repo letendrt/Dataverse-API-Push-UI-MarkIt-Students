@@ -50,7 +50,11 @@ The present tool has the advanatage of allowing users to perform variable level 
 <br><br>
 
 8) For fields 3 and 4, simply press their respective button and navigate to the local file on your device. For field 3, select the JSON file donwloaded in step 2. For step 4, simply select the original SPSS file (.sav extension) that was converted to TAB during the ingestion process.
-9) For fields 5 and 6, 
+9) For find the values of field 5 and 6, open your tabular file in data explorer, and locate the dataset ID variable and the weight variable. Those will be your inputs for 5 and 6 respectively. Note that the tool is case sensitive. As such, if the variable name is in upper case, make sure to also input it in upper cases in the text boxes.
+
+<kbd><img width="1216" height="308" alt="image" src="https://github.com/user-attachments/assets/5144ee49-034a-4d8f-a3a7-c3f0dc79c503" /></kbd>
+<br><br>
+
 
 
 
