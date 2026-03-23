@@ -55,7 +55,8 @@ The present tool has the advanatage of allowing users to perform variable level 
 <kbd><img width="1216" height="308" alt="image" src="https://github.com/user-attachments/assets/5144ee49-034a-4d8f-a3a7-c3f0dc79c503" /></kbd>
 <br><br>
 
-
+10) Once all fields are populated, you may press the "RUN SCRIPT" button. Once selected, the window will automatically close. The script may run for a few minutes (sometimes up to 10 minutes or more dpeending on the size of the SPSS file. You should be able to see the task progress on your IDE's python shell.
+<br><br>
 
 
 
