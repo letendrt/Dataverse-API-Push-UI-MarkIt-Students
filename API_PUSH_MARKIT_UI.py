@@ -6,7 +6,6 @@
 
 #----------------------IMPORTING LIBRARIES
 
-
 # Importing GUI tools
 from tkinter import *
 from tkinter import scrolledtext
@@ -34,7 +33,6 @@ import json
 import pandas as pd
 
 
-
 #--------------------USER INTERFACE PARAMETERS
 
 # Background and Font Colours
@@ -60,7 +58,6 @@ font_setting_4 = ('Baskerville', 12, 'bold')
 font_setting_5 = ('Baskerville', 20, 'bold')
 
 
-
 #----------------------------TEXT VALUES
 
 # Setting up window text values
@@ -77,7 +74,6 @@ text_val_8 = "4) Browse for the SPSS file (local .sav file uploaded as a tabular
 text_val_10 = "5) Enter weight variable name;"
 
 text_val_11 = "6) Enter ID variable label;"
-
 
 
 #---------------------------LABEL PARAMETERS
@@ -116,7 +112,6 @@ label_10.place(relx = 0.05, rely = 0.89, anchor = 'w')
 label_11.place(relx = 0.4, rely = 0.89, anchor = 'w')
 
 
-
 #--------------TEXTBOX PARAMETERS AND PLACEHOLDER ENTRIES
 
 entry_1 = Entry(root, font = font_setting_3, fg = font_col, bg = box_col)
@@ -132,13 +127,11 @@ entry_4 = Entry(root, font = font_setting_3, fg = font_col, bg = box_col)
 entry_4.insert(0, ' e.g.: CASEID or RECNUM')
 
 
-
 # Placing text boxes on root window
 entry_1.place(relx = 0.093, rely = 0.29, anchor = 'w', width = 750, height = 40)
 entry_2.place(relx = 0.093, rely = 0.44, anchor = 'w', width = 750, height = 40)
 entry_3.place(relx = 0.07, rely = 0.945, anchor = 'w', width = 250, height = 40)
 entry_4.place(relx = 0.4, rely = 0.945, anchor = 'w', width = 260, height = 40)
-
 
 
 #--------------------------BUTTON FUNCTIONS 
@@ -190,14 +183,11 @@ def run_script():
     print(row_val[4])
     
     root.destroy()
-    
     backend_processes(doi, row_val)
     
     print("PROCESS DONE!")
     
     
-    
-
 #------------------------------BUTTON PARAMETERS
 
 file_button_1 = Button(root, text = "Upload XML File", font = font_setting_3, 
@@ -209,12 +199,10 @@ file_button_2 = Button(root, text = "Upload SPSS File", font = font_setting_3,
 run_backend = Button(root, text = "RUN SCRIPT", font = font_setting_5,
                      bg = '#C42700', fg = 'white', command = run_script)
 
-
 # Placing buttons on root window
 file_button_1.place(relx = 0.1, rely = 0.59, anchor = 'w', width = 300, height = 40)
 file_button_2.place(relx = 0.1, rely = 0.77, anchor = 'w', width = 300, height = 40)
 run_backend.place(relx = 0.96, rely = 0.9, anchor = 'e', width = 260, height = 90)
-
 
 
 #----------------------- ACTUAL BACKEND
@@ -223,13 +211,10 @@ def check_lock(dataset_id, row_val):
     
         api_token_origin = row_val[4]                                            # Enter API key as string
         url_base_origin = 'https://borealisdata.ca'                              # Input base origin url as string
-    
         headers_origin = {'X-Dataverse-key': api_token_origin}                   # Create dictionary and insert API token as the value
         api_origin = NativeApi(url_base_origin, api_token_origin)                # API call using the pyDataverse
         data_api_origin = DataAccessApi(url_base_origin, api_token_origin)        
     
-    
-
         time_start = datetime.now()                                                     # Set up internal timer
         print("Start check_lock")                                                       # Print start message
 	
@@ -239,7 +224,6 @@ def check_lock(dataset_id, row_val):
 	
             if lock.status_code == 503:                                                 # If URL is unavailable
                     print("503 - Server is unavailable")                                # Print status
-
                     sys.exit()                                                          # stop running the function
 
             a = 0
@@ -254,7 +238,6 @@ def check_lock(dataset_id, row_val):
                     print("503 - Server is unavailable")                                # Print status
                     sys.exit()                                                          # Stop running the function
 
-
                 if lock.status_code != 200:                                                                 # If URL status code is not 200 (not successful)
                     print(f"check_lock func: lock status {str(lock.status_code)} for {dataset_id}")         # Print lock information
                     return False                                                                            # Return False
@@ -263,7 +246,6 @@ def check_lock(dataset_id, row_val):
             print(f"check_lock. Error {str(e)}, dataset {dataset_id} ")                 # Print lock information
             return False                                                                # Return False
 
-
         time_end = datetime.now()                                                       # Provide date and time
         t = (time_end - time_start)                                                     # Give total time taken to ingest dataset
         print(f"Dataset {str(dataset_id)} was locked {str(t.total_seconds())} sec")     # Provide dataset information
@@ -271,14 +253,10 @@ def check_lock(dataset_id, row_val):
         return True      
 
 
-
-
 def backend_processes(doi, row_val):
-    
     
     api_token_origin = row_val[4]                                                 # Enter API key as string
     url_base_origin = 'https://borealisdata.ca'                                   # Input base origin url as string
-    
     headers_origin = {'X-Dataverse-key': api_token_origin}                             # Create dictionary and insert API token as the value
     api_origin = NativeApi(url_base_origin, api_token_origin)                          # API call using the pyDataverse
     data_api_origin = DataAccessApi(url_base_origin, api_token_origin)
@@ -294,7 +272,6 @@ def backend_processes(doi, row_val):
         dataset_id = latest_version['datasetId']
 
         
-        
         for file in files:                                                    # For loop running curl commands to create new dataset version?
             dataFile = file['dataFile']                                       # Assigns file name to a variable.
     
@@ -306,7 +283,6 @@ def backend_processes(doi, row_val):
                 tab_xml = get_var_metadata_dataverse(id, tab_id_old, row_val)          # Get variable metadata from the dataverse record
                 print(tab_xml)
 
-    
                 if tab_xml != False and tab_xml is not None:                  # If the newly created file is NOT empty - meaning it successfully pulled content in get_var_metadata_dataverse()
                     result = re.search(r'{((.*))}', tab_xml.tag)              # Using regex library to capture and group all instances of the html/XML tag <ns:0>
     
@@ -316,10 +292,8 @@ def backend_processes(doi, row_val):
                     else:                                                     # Else, if result is populated
                         ns_var = result.group(0)                              # Assign ns:0 to the variable 'ns_var'
     
-    
                     dataDscr = tab_xml.find(f"{ns_var}dataDscr")
                     xml = ET.ElementTree(dataDscr)
-    
     
                     weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old)        
     
@@ -330,13 +304,11 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
     
     api_token_origin = row_val[4]                                                 # Enter API key as string
     url_base_origin = 'https://borealisdata.ca'                                   # Input base origin url as string
-    
     headers_origin = {'X-Dataverse-key': api_token_origin}                             # Create dictionary and insert API token as the value
     api_origin = NativeApi(url_base_origin, api_token_origin)                          # API call using the pyDataverse
     data_api_origin = DataAccessApi(url_base_origin, api_token_origin)
     
     
-
     weight_var = row_val[0]                                                         # Assigning CSV file weight variable to the variable weight_var
     omission = row_val[1]                                                           # Assigning CSV file weight omissions to the variable 'omission'
 
@@ -348,7 +320,6 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
             var.attrib['wgt'] = 'wgt'                                               # Assign it as the weight variable
             weight_id = var.attrib.get('ID')                                        # Assign the variable id to the variable weight_id
     
-
     for var in vars:                                                                # For all variables in the vars list
         var_name = var.attrib.get('name')                                           # Create list of vars.
         if var_name != omission and var_name != weight_var:                         # If the var name is not a to-be omitted (not-weighted) variable or the weight variable
@@ -361,9 +332,7 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
 
         for catgry in var.findall(f'{ns_var}catgry'):                               # For every variable category
             labl_element = catgry.find(f'{ns_var}labl')                             # fetch the label element and assign it to the variable labl_element
-            
             print(f'HERE ARE THE LABEL ELEMENTS: {labl_element}')
-
 
             if labl_element is not None:                                            # If the label is not empty
                 label = labl_element.text                                           # Assign its name to the variable 'label'
@@ -378,7 +347,6 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
     print(main_dict)                                                                # Print the main dictionary
     updated_dictionary = calculate_weights(row_val, main_dict)                          # Assign the result of the function 'calculate weights' to the variable 'updated_dictionary'
     print(updated_dictionary)                                                       # Print the dictionary returned from the above function
-
 
     for var in xml.findall(f'{ns_var}var'):                                                 # For every variable in the XML file
         var_name = var.attrib.get('name')                                           # Assign eTree attribute 'name' to the variable var_name
@@ -399,7 +367,6 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
                         new_entry.set('wgtd', 'wgtd')                               # Create necessary attribute documentation for the element
                         new_entry.set('wgt-var', weight_id)
 
-
                         if len(val) == 1:                                           # if the length of the list value is 1 in length (meaning the numerical text value is 0)
                             new_entry.text = str(val[0])                            # Reuse value 0
                         else:                                                       # Otherwise
@@ -411,19 +378,14 @@ def weight_formatter(row_val, ns_var, xml, dataset_id, tab_id_old):
     updated_xml = xml.getroot()                                                     # Return to the XML file root
     newest_xml = new_groups(updated_xml, ns_var, row_val)
 
-
     namespace = 'http://www.icpsr.umich.edu/DDI'
     new_parent = ET.Element(f"{{{namespace}}}codeBook", version="2.0")
     new_parent.append(newest_xml)
 
-
     xml_string = ET.tostring(new_parent, encoding='utf8', method='xml').decode('utf8')               # Setup xml as a string (must be a string to push to dataverse)
     xml_string = xml_string.replace('ns0:', '')
 
-
     var_update_dataset(dataset_id, tab_id_old, xml_string, row_val)
-    
-
 
 
 
@@ -440,7 +402,7 @@ def calculate_weights(row_val, main_dict):
     df = pd.read_spss(filename)
     print(df.head())
 
-
+	
     variable_list = []                                                              # Creating and empty list
     for col in df:                                                                  # For columns in the dataframe
         if col != weight_var and col != omission:                                   # If the column name is not that of the weight variable or omitted variables
@@ -463,33 +425,25 @@ def calculate_weights(row_val, main_dict):
                     main_dict[key][label].append(frequency)                         # Append the weighted frequency next to the corresponding non-weighted frequency.
             x += 1
 
-
     return main_dict                                                                # Return the updated main_dict
-
 
 
 
 def new_groups(updated_xml, ns_var, row_val):
     
-    
     api_token_origin = row_val[4]                                                 # Enter API key as string
     url_base_origin = 'https://borealisdata.ca'                                   # Input base origin url as string
-    
     headers_origin = {'X-Dataverse-key': api_token_origin}                             # Create dictionary and insert API token as the value
     api_origin = NativeApi(url_base_origin, api_token_origin)                          # API call using the pyDataverse
     data_api_origin = DataAccessApi(url_base_origin, api_token_origin)
     
-
-
     template = ET.parse(row_val[3])                                                 # Parsing XML file used as template
     template_root = template.getroot()                                              # Setting up etree root
     namespaces = {'ddi': 'http://www.icpsr.umich.edu/DDI'}                          # Defining the namespace dictionary - this seems to be mandatory when we import an XML proper (not necessary when extracted from dataverse)
 
-
     grouping = updated_xml.findall(f'{ns_var}varGrp')                               # Creating list of all variable groups currently existing in the current file xml
     for grp in grouping:                                                            # For every variable group in the list of variable groups
         updated_xml.remove(grp)                                                     # Delete the group from the XML record
-
 
     x = 0                                                                                    # Create an index variable ======= Note: x starts 0 - that way var groups appear at the top of the XML record under dataDscr (relevant later)
     vars = updated_xml.findall(f'{ns_var}var')                                               # From the file XML, retrieve and list all variables
@@ -505,10 +459,8 @@ def new_groups(updated_xml, ns_var, row_val):
         
         try:
             var_grp_template = variables_template.split(' ')                        # List all variables in the string by delineating them at spaces
-        
         except:
             pass
-
 
         group_list_template = []                                                      # Create an empty list
         variable_name = template_root.findall('ddi:dataDscr/ddi:var', namespaces)     # List all variables found in the template
@@ -519,9 +471,7 @@ def new_groups(updated_xml, ns_var, row_val):
                 if ids == tex_val:                                                  # If the ID the loop is parsing through is the same as tex_val
                     group_list_template.append(var.attrib.get('name'))              # Add the variable name to group_list
 
-
         new_id_list = []                                                            # Create an empty list that will hold IDs
-
         for var in vars:                                                            # for all variables pulled from the current dataverse record
             var_name = var.attrib.get('name')                                       # Assign the variable name to var_name
             if var_name in group_list_template:                                     # If the pulled variable name appears in the template group list
@@ -530,7 +480,6 @@ def new_groups(updated_xml, ns_var, row_val):
 
         string_setup = " ".join(new_id_list)                                        # Create a list holding the list items (joined at spaces)
         print(string_setup)                                                         # This is optional - good for comparing to an XML record
-
 
         group_entry = ET.Element(f'{ns_var}varGrp')                                 # Here we create the new element to be added in the dataverse XML record
         group_entry.set('ID', group.attrib.get('ID'))                               # Create necessary attribute documentation for the element
@@ -553,14 +502,12 @@ def var_update_dataset(dataset_id, datafile_id, xml, row_val):
     
     api_token_origin = row_val[4]                                                 # Enter API key as string
     url_base_origin = 'https://borealisdata.ca'                                   # Input base origin url as string
-    
     headers_origin = {'X-Dataverse-key': api_token_origin}                             # Create dictionary and insert API token as the value
     api_origin = NativeApi(url_base_origin, api_token_origin)                          # API call using the pyDataverse
     data_api_origin = DataAccessApi(url_base_origin, api_token_origin)    
     
     
     print("Start var_update_dataset")
-
     url = f'{url_base_origin}/api/edit/{str(datafile_id)}'                          
     check = check_lock(dataset_id, row_val)                                         # Assign check_lock function return to the variable 'check'
     if check == False:                                                              # If check_lock returns False
@@ -572,7 +519,6 @@ def var_update_dataset(dataset_id, datafile_id, xml, row_val):
         if resp.status_code != 200:                                                 # If access is unsuccessful
             print(resp.json())                                                      # Print failure information
             return False                                                            # Return False
-
         else:                                                                       # If access is successful
             print("Updated")                                                        # Print status
 
@@ -588,36 +534,29 @@ def get_var_metadata_dataverse(dataset_id, datafile_id, row_val):
     
     api_token_origin = row_val[4]                                                 # Enter API key as string
     url_base_origin = 'https://borealisdata.ca'                                   # Input base origin url as string
-    
     headers_origin = {'X-Dataverse-key': api_token_origin}                             # Create dictionary and insert API token as the value
     api_origin = NativeApi(url_base_origin, api_token_origin)                          # API call using the pyDataverse
     data_api_origin = DataAccessApi(url_base_origin, api_token_origin)        
-    
 
+	
     print("Start get_var_metadata_dataverse")
     lock = check_lock(dataset_id, row_val)                                          # Checks if dataset is locked with the function 'check_lock()'
     url = url_base_origin                                                           # Assigns previously defined url origin to the variable 'url'
-
 
     if lock:                                                                        # if able to access the url -------------------- Dataset must not be in draft prior to this, it kept crashing for me if it was
         url = f"{url}/api/access/datafile/{datafile_id}/metadata"                   # assign new url to the 'url' variable
         resp = requests.get(url, headers=headers_origin)                            # Assign access information to the variable 'resp'
 
-
         if resp.status_code == 200:                                                 # If access is successful
             tree = ET.fromstring(resp.content)                                      # Assign string json() data to tree (creates a new json?)
-
             return tree
-
 
         else:                                                                                                            # If access code is not 200
             print(f"get_var_metadata_dataverse: dataset_id = {dataset_id} datafile_id = {datafile_id} url = {url}")      # Print assigned variables
-
             return False
 
     else:                                                                                                                          # If the url is locked (this could be for various different reasons)
         print(f"get_var_metadata_dataverse: dataset_id = {dataset_id} datafile_id = {datafile_id} url ={url} locking problem")     # Print an error message
-
         return False
 
 
